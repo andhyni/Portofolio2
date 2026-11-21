@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #080808;
+  --color-obsidian-deep: #050505;
+  --color-navy-arch: #1A365D;
+  --color-navy-dark: #0b192e;
+  --color-muted-grey: #8E929B;
+  --color-surface-elevated: #12131a;
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-signature: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --shadow-glow-cyan: 0 0 35px -5px rgba(56, 189, 248, 0.25);
+  --shadow-arch-glow: 0 20px 80px -15px rgba(26, 54, 93, 0.65);
+  --shadow-portrait: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+@layer base {
+  html {
+    background-color: #080808;
+    color: #ffffff;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #080808;
+    color: #ffffff;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #1e3a8a;
+    color: #ffffff;
+  }
+}
+
+/* Ambient perspective floor grid & radial royal-navy spotlight */
+.bg-perspective-grid {
+  background-image:
+    radial-gradient(circle at 50% 18%, rgba(26, 54, 93, 0.3) 0%, rgba(8, 8, 8, 0) 70%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 64px 64px, 64px 64px;
+}
+
+/* 3D Perspective Ribbon Stage behind the hero portrait */
+.hero-perspective-stage {
+  perspective: 1200px;
+  perspective-origin: center 40%;
+}
+
+@keyframes ribbonScroll {
+  0% {
+    transform: rotateX(6deg) rotateY(-4deg) rotateZ(-1deg) translateX(0);
+  }
+  100% {
+    transform: rotateX(6deg) rotateY(-4deg) rotateZ(-1deg) translateX(-50%);
+  }
+}
+
+.curved-marquee-track {
+  transform-style: preserve-3d;
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: ribbonScroll 36s linear infinite;
+}
+
+.curved-marquee-track:hover,
+.curved-marquee-track[data-paused="true"] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curved-marquee-track {
+    animation: none;
+    transform: rotateX(4deg) rotateY(-2deg);
+  }
+}
+
+/* Subtle hair-line glass styling */
+.glass-hairline {
+  background: rgba(18, 18, 20, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-4px);
+}

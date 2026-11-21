@@ -1,0 +1,870 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Andhyni A'syafa A-lifia — Informatics &amp; Event Leader</title>
+<!-- Google Fonts Preconnect & Stylesheet -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Playfair+Display:ital,wght@0,400..700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#080808',
+            navyArch: '#1A365D',
+            navyDark: '#0b192e',
+            subtleBorder: 'rgba(255, 255, 255, 0.08)',
+            mutedGrey: '#8E929B',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            signature: ['"Caveat"', 'cursive'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 35px -5px rgba(56, 189, 248, 0.25)',
+            'arch-glow': '0 20px 80px -15px rgba(26, 54, 93, 0.65)',
+            'portrait-shadow': '0 20px 50px rgba(0, 0, 0, 0.9)',
+          },
+          animation: {
+            'ribbon-scroll': 'ribbonScroll 32s linear infinite',
+            'pulse-subtle': 'pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            ribbonScroll: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            pulseSubtle: {
+              '0%, 100%': { opacity: 1 },
+              '50%': { opacity: .4 },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Base & Layout Custom Styles -->
+<style data-purpose="base-styling">
+    body {
+      background-color: #080808;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ambient perspective floor grid & radial spotlight */
+    .bg-perspective-grid {
+      background-image: 
+        radial-gradient(circle at 50% 18%, rgba(26, 54, 93, 0.28) 0%, rgba(8, 8, 8, 0) 70%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 64px 64px, 64px 64px;
+    }
+
+    /* 3D Perspective Ribbon Stage behind the hero portrait */
+    .hero-perspective-stage {
+      perspective: 1200px;
+      perspective-origin: center 40%;
+    }
+
+    .curved-marquee-track {
+      transform-style: preserve-3d;
+      transform: rotateX(6deg) rotateY(-4deg) rotateZ(-1deg);
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+
+    /* Subtle hair-line glass styling */
+    .glass-hairline {
+      background: rgba(18, 18, 20, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card-hover {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: translateY(-4px);
+    }
+
+    /* Selection highlight */
+    ::selection {
+      background-color: #1e3a8a;
+      color: #ffffff;
+    }
+  </style>
+<!-- END: Base & Layout Custom Styles -->
+</head>
+<body class="bg-obsidian text-white relative selection:bg-blue-900 selection:text-white antialiased">
+<!-- BEGIN: Ambient Background Texture -->
+<div aria-hidden="true" class="fixed inset-0 bg-perspective-grid pointer-events-none z-0"></div>
+<div aria-hidden="true" class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+<!-- END: Ambient Background Texture -->
+<!-- BEGIN: FixedNavigationHeader -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-obsidian/75 border-b border-white/[0.06]">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<!-- Brand Wordmark -->
+<a aria-label="Andhyni Homepage" class="group flex items-center gap-2" href="#">
+<span class="font-sans font-semibold tracking-tight text-xl text-white group-hover:text-blue-200 transition-colors">Andhyni<span class="text-blue-500 font-bold">.</span></span>
+</a>
+<!-- Center Status Badges (Hidden on mobile) -->
+<div class="hidden md:flex items-center gap-4 text-xs font-medium text-neutral-400">
+<!-- Location Indicator -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08]">
+<span class="text-neutral-500">📍</span>
+<span>Based in Tangerang &amp; Jakarta</span>
+</div>
+<!-- Live Status Pill -->
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/40 border border-blue-500/30 text-neutral-200">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+</span>
+<span class="font-mono text-[11px] tracking-wide text-neutral-300">Open for Internships &amp; Projects</span>
+</div>
+</div>
+<!-- Right Navigation Links -->
+<nav class="flex items-center gap-6 sm:gap-8 text-xs uppercase tracking-widest text-neutral-400 font-medium">
+<a class="hover:text-white transition-colors duration-200" href="#about">About</a>
+<a class="hover:text-white transition-colors duration-200" href="#whyme">Why Me</a>
+<a class="hover:text-white transition-colors duration-200" href="#projects">Projects</a>
+<a class="hidden sm:inline-block hover:text-white transition-colors duration-200" href="#credentials">Experience</a>
+<a class="px-4 py-2 rounded-full border border-white/20 text-white hover:bg-white hover:text-obsidian hover:border-white transition-all duration-300 font-semibold tracking-normal lowercase first-letter:uppercase" href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+<!-- END: FixedNavigationHeader -->
+<!-- BEGIN: HeroSection -->
+<!-- Recreating the visual composition of Screenshot 2026-11-21 130943.png with curved ribbon behind portrait -->
+<section class="relative min-h-[92vh] pt-24 pb-12 flex flex-col justify-between overflow-hidden z-10" id="about">
+<!-- Top Micro Bar for Viewport Clarity -->
+<div class="max-w-7xl w-full mx-auto px-6 pt-4 flex justify-between items-center text-xs text-neutral-400">
+<div class="hidden lg:flex items-center gap-6">
+<span class="font-mono text-neutral-500">• 01 / PROTAGONIST</span>
+<span>S1 Teknik Informatika @ IT PLN</span>
+</div>
+<div class="hidden lg:flex items-center gap-2 font-mono text-neutral-500">
+<span>ARCHITECTURAL VISION // PYTHON AUTOMATION</span>
+</div>
+</div>
+<!-- Center Stage: 3D Curved Continuous Ribbon & Floating Cards Layer -->
+<div class="relative w-full my-auto py-10 hero-perspective-stage flex items-center justify-center overflow-hidden">
+<!-- 3D Ribbon moving infinitely in background -->
+<div class="curved-marquee-track animate-ribbon-scroll gap-6 opacity-60 hover:opacity-90 transition-opacity duration-500" data-purpose="3d-carousel-ribbon" style="animation-play-state: running;">
+<!-- Slide 1: Python Kickstart Card -->
+<div class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-blue-400 bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800/40">Samsung Innovation Campus</span>
+<span class="text-xs text-neutral-500">Batch 8</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Code Kickstart (26 Hrs)</h4>
+<p class="text-xs text-neutral-400 mt-1">Python Programming, CSV Data pipelines &amp; Gen AI prompting logic.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>Stage 1 Completed</span>
+<span class="text-cyan-400 font-semibold">Score: Pass ✓</span>
+</div>
+</div>
+<!-- Slide 2: Pentas Seni Akbar Event Architecture -->
+<div class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-amber-300 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-800/40">Leadership &amp; Stage</span>
+<span class="text-xs text-neutral-500">2024</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Pentas Seni Akbar</h4>
+<p class="text-xs text-neutral-400 mt-1">Secretary &amp; Stage Flow Direction for 2,000+ attendees across 5+ divisions.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>5+ Division Heads</span>
+<span class="text-white font-semibold">2,000+ Crowd</span>
+</div>
+</div>
+<!-- Slide 3: PARADISE IX & X First Place -->
+<div class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">Award · 4x 1st Place</span>
+<span class="text-xs text-neutral-500">PARADISE IX &amp; X</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Perspektif Gedung &amp; Mading Art</h4>
+<p class="text-xs text-neutral-400 mt-1">Champion in technical architectural perspective drawing, painting &amp; creative UI.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>Tingkat Penegak</span>
+<span class="text-emerald-400 font-bold">Juara 1 Trophy</span>
+</div>
+</div>
+<!-- Slide 4: PERJUSA 2-Day Camp -->
+<div class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-indigo-300 bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-800/40">Event Director</span>
+<span class="text-xs text-neutral-500">2024</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">PERJUSA Annual Camp</h4>
+<p class="text-xs text-neutral-400 mt-1">Chief Event Organizer leading 20+ staff committee &amp; 150 student campers.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>150 Campers</span>
+<span class="text-indigo-300 font-semibold">100% Safety Rec</span>
+</div>
+</div>
+<!-- Slide 5: Academic & Secretarial Governance -->
+<div class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-purple-300 bg-purple-950/50 px-2 py-0.5 rounded border border-purple-800/40">Governance</span>
+<span class="text-xs text-neutral-500">IKSAN</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Amaliah Tadris &amp; Mediation</h4>
+<p class="text-xs text-neutral-400 mt-1">Grade 86 (A-) Teaching Practicum, Quran Tahfizh 2 Juz, and conflict mediation.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>Secretariat</span>
+<span class="text-purple-300 font-semibold">Nilai A- (86)</span>
+</div>
+</div>
+<!-- DUPLICATE SET FOR INFINITE SEAMLESS LOOP -->
+<div aria-hidden="true" class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-blue-400 bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800/40">Samsung Innovation Campus</span>
+<span class="text-xs text-neutral-500">Batch 8</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Code Kickstart (26 Hrs)</h4>
+<p class="text-xs text-neutral-400 mt-1">Python Programming, CSV Data pipelines &amp; Gen AI prompting logic.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>Stage 1 Completed</span>
+<span class="text-cyan-400 font-semibold">Score: Pass ✓</span>
+</div>
+</div>
+<div aria-hidden="true" class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-amber-300 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-800/40">Leadership &amp; Stage</span>
+<span class="text-xs text-neutral-500">2024</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Pentas Seni Akbar</h4>
+<p class="text-xs text-neutral-400 mt-1">Secretary &amp; Stage Flow Direction for 2,000+ attendees across 5+ divisions.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>5+ Division Heads</span>
+<span class="text-white font-semibold">2,000+ Crowd</span>
+</div>
+</div>
+<div aria-hidden="true" class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">Award · 4x 1st Place</span>
+<span class="text-xs text-neutral-500">PARADISE IX &amp; X</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Perspektif Gedung &amp; Mading Art</h4>
+<p class="text-xs text-neutral-400 mt-1">Champion in technical architectural perspective drawing, painting &amp; creative UI.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>Tingkat Penegak</span>
+<span class="text-emerald-400 font-bold">Juara 1 Trophy</span>
+</div>
+</div>
+<div aria-hidden="true" class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-indigo-300 bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-800/40">Event Director</span>
+<span class="text-xs text-neutral-500">2024</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">PERJUSA Annual Camp</h4>
+<p class="text-xs text-neutral-400 mt-1">Chief Event Organizer leading 20+ staff committee &amp; 150 student campers.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>150 Campers</span>
+<span class="text-indigo-300 font-semibold">100% Safety Rec</span>
+</div>
+</div>
+<div aria-hidden="true" class="w-72 sm:w-80 h-44 rounded-xl p-5 bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-white/10 shadow-2xl flex flex-col justify-between backdrop-blur-md transform transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-mono uppercase tracking-wider text-purple-300 bg-purple-950/50 px-2 py-0.5 rounded border border-purple-800/40">Governance</span>
+<span class="text-xs text-neutral-500">IKSAN</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-white">Amaliah Tadris &amp; Mediation</h4>
+<p class="text-xs text-neutral-400 mt-1">Grade 86 (A-) Teaching Practicum, Quran Tahfizh 2 Juz, and conflict mediation.</p>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+<span>Secretariat</span>
+<span class="text-purple-300 font-semibold">Nilai A- (86)</span>
+</div>
+</div>
+</div>
+<!-- Center Cutout Portrait of Andhyni (Anchored directly over ribbon) -->
+<div class="absolute bottom-[-18px] sm:bottom-[-24px] left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
+<!-- Soft backlight glow under portrait -->
+<div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-blue-500/15 blur-3xl absolute top-12 pointer-events-none"></div>
+<img alt="Andhyni A'syafa A-lifia portrait" class="h-[360px] sm:h-[460px] md:h-[540px] lg:h-[600px] w-auto object-center filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] select-none pointer-events-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Zp4e9c8M_8ehIyHcfIkbZ-VFRT2XwGeM8NKpwLZQY-mdmFY8juu1MRHgqvL2IwRs5sezH0X5vGsAVH0jMel9xrUw-YblYxF_13GF20BU0G7_Qmv7GJE9bIJJk6_bEmgxkA0ylS9NMp_zEnOqDNLcY2cGbtsMIN06J2Gc04xbsvuouO5Ox2s4VzX69idLIkMuYX4X-BWRwx4s25M-kw68A6mO9DM6bTkTyZlO7GBGSMFpv7jOOQR1Ow" style="max-height: 72vh; width: auto; max-width: 100%; object-fit: contain; object-position: center bottom;">
+</div>
+</div>
+<!-- Bottom Left & Right Editorial Floating Blocks (Matching Image 2 Layout) -->
+<div class="max-w-7xl w-full mx-auto px-6 relative z-30 pt-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+<!-- Left: Large H1 Title & White Primary Pill CTA -->
+<div class="space-y-6">
+<div class="space-y-1">
+<span class="text-xs font-mono uppercase tracking-wider text-neutral-400 block">Hi, I'm Andhyni</span>
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+              Informatics &amp; <br>
+<span class="text-neutral-100">Event Leader</span>
+</h1>
+</div>
+<div>
+<a class="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-obsidian font-semibold text-sm hover:bg-neutral-200 transition-all duration-300 group shadow-lg hover:shadow-white/20" href="#contact">
+<span>Begin a project</span>
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-obsidian text-white text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">↗</span>
+</a>
+</div>
+</div>
+<!-- Right: Editorial Bio & Signature -->
+<div class="md:text-right space-y-4 max-w-md md:ml-auto">
+<p class="text-sm sm:text-base text-mutedGrey leading-relaxed font-normal">
+            I'm <strong class="text-white font-semibold">Andhyni</strong>, an Informatics Engineering student at <strong class="text-white font-semibold">Institut Teknologi PLN</strong> who turns <strong class="text-white font-semibold">clean Python &amp; web code</strong> and <strong class="text-white font-semibold">structured event management</strong> into real, impactful experiences.
+          </p>
+<!-- Handwritten Signature -->
+<div class="pt-1 md:pr-2 flex md:justify-end items-center">
+<span class="font-signature text-3xl sm:text-4xl text-neutral-200 tracking-wide select-none transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+              Andhyni
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: WhyMeSection -->
+<!-- Section 2: Statement Arch in Royal Navy Flanked by 4 Bold Metric Cards -->
+<section class="relative py-28 px-6 z-20" id="whyme">
+<div class="max-w-7xl mx-auto">
+<!-- Section Header Tagline -->
+<div class="text-center mb-16 space-y-3">
+<span class="font-mono text-xs tracking-widest text-blue-400 uppercase bg-blue-950/40 border border-blue-900/40 px-3 py-1 rounded-full">Executive Profile</span>
+<h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-white">Architectural Precision Meets Operational Calm</h2>
+<p class="text-sm text-neutral-400 max-w-xl mx-auto">Bridging algorithmic software development with high-stakes human coordination.</p>
+</div>
+<!-- Main Stage Container: 4 Flanking Metrics + Central Navy Arch -->
+<div class="relative grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- LEFT 2 METRIC CARDS -->
+<div class="lg:col-span-3 flex flex-col gap-6 order-2 lg:order-1">
+<!-- Metric 1 (Top-Left) -->
+<div class="glass-hairline rounded-2xl p-6 glass-card-hover relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-all"></div>
+<div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">2000+</div>
+<div class="text-xs font-mono uppercase tracking-wider text-blue-400 mt-2">Audience Managed</div>
+<p class="text-xs text-neutral-400 mt-2 leading-relaxed">
+              Orchestrated stage flow &amp; audience direction across 5+ divisions at Pentas Seni Akbar with zero protocol failure.
+            </p>
+</div>
+<!-- Metric 2 (Bottom-Left) -->
+<div class="glass-hairline rounded-2xl p-6 glass-card-hover relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/20 transition-all"></div>
+<div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">150+</div>
+<div class="text-xs font-mono uppercase tracking-wider text-emerald-400 mt-2">Campers &amp; Committee</div>
+<p class="text-xs text-neutral-400 mt-2 leading-relaxed">
+              Chief Event Director for 2-day PERJUSA overnight camp leading 20+ staff committee members seamlessly.
+            </p>
+</div>
+</div>
+<!-- CENTER ROYAL NAVY ARCH STATEMENT CARD -->
+<div class="lg:col-span-6 order-1 lg:order-2 flex justify-center">
+<div class="w-full max-w-md min-h-[460px] rounded-t-[190px] rounded-b-3xl bg-gradient-to-b from-[#1A365D] via-[#12233f] to-[#0A1120] border border-blue-400/30 p-8 sm:p-12 flex flex-col justify-between items-center text-center shadow-arch-glow relative overflow-hidden group">
+<!-- Arch Inner Ambient Highlight -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-blue-400/20 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Top Eyebrow -->
+<div class="pt-6">
+<span class="inline-block text-[11px] font-mono tracking-widest uppercase text-blue-200 bg-white/10 px-3.5 py-1 rounded-full border border-white/15">
+                • WHY ME
+              </span>
+</div>
+<!-- Main Arch Editorial Headline -->
+<div class="my-auto py-6 space-y-4">
+<h3 class="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+                Execution that<br>
+                delivers real<br>
+<span class="font-serif italic font-normal text-blue-200">results</span>
+</h3>
+<p class="text-xs sm:text-sm text-slate-300 max-w-xs mx-auto leading-relaxed">
+                Every project is approached with analytical logic, calm mediation, and structured coordination.
+              </p>
+</div>
+<!-- Bottom Handwritten Signature inside Arch -->
+<div class="pb-2">
+<span class="font-signature text-4xl text-white select-none block tracking-wide">
+                Andhyni
+              </span>
+<span class="text-[10px] font-mono text-blue-300/80 uppercase tracking-widest mt-1 block">Informatics • Event Leader</span>
+</div>
+</div>
+</div>
+<!-- RIGHT 2 METRIC CARDS -->
+<div class="lg:col-span-3 flex flex-col gap-6 order-3">
+<!-- Metric 3 (Top-Right) -->
+<div class="glass-hairline rounded-2xl p-6 glass-card-hover relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/20 transition-all"></div>
+<div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">26 HRS</div>
+<div class="text-xs font-mono uppercase tracking-wider text-cyan-400 mt-2">Samsung Innovation Campus</div>
+<p class="text-xs text-neutral-400 mt-2 leading-relaxed">
+              Intensive training in Python programming, algorithmic data parsing (CSV, Lists, Dictionaries) and generative AI prompt pipelines.
+            </p>
+</div>
+<!-- Metric 4 (Bottom-Right) -->
+<div class="glass-hairline rounded-2xl p-6 glass-card-hover relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/20 transition-all"></div>
+<div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">4x</div>
+<div class="text-xs font-mono uppercase tracking-wider text-amber-400 mt-2">1st Place Trophies</div>
+<p class="text-xs text-neutral-400 mt-2 leading-relaxed">
+              Consecutive first-place state honors in architectural perspective drawing, wall-magazine design &amp; creative arts (PARADISE IX &amp; X).
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: WhyMeSection -->
+<!-- BEGIN: FeaturedProjectsSection -->
+<!-- Section 3: Alternating 2-column editorial rows with oversized serif numbers (01 - 04) -->
+<section class="py-24 px-6 z-20 border-t border-white/[0.06] relative" id="projects">
+<div class="max-w-7xl mx-auto">
+<!-- Section Eyebrow -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-20">
+<div>
+<span class="text-xs font-mono tracking-widest text-blue-400 uppercase">• FEATURED WORK &amp; LEADERSHIP</span>
+<h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mt-2">Crafting Software &amp; Directing Experiences</h2>
+</div>
+<p class="text-xs sm:text-sm text-neutral-400 max-w-sm">
+          A dual focus on clean Python &amp; web code paired with institutional governance and massive stage direction.
+        </p>
+</div>
+<div class="space-y-24">
+<!-- ROW 01: Python & Generative AI (Left: Card, Right: Text) -->
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center" data-purpose="project-row-01">
+<!-- Media Showcase Card -->
+<div class="lg:col-span-7 order-2 lg:order-1">
+<div class="glass-hairline rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-neutral-900/90 to-obsidian border border-white/10 hover:border-blue-500/40 transition-all duration-300">
+<!-- Code Header Bar -->
+<div class="flex items-center justify-between pb-4 border-b border-white/10 text-xs font-mono text-neutral-400">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+<span class="ml-2 text-neutral-300">sic_stage1_pipeline.py</span>
+</div>
+<span class="text-blue-400">SIC Batch 8</span>
+</div>
+<!-- Terminal Code Mockup -->
+<div class="py-5 font-mono text-xs sm:text-sm text-neutral-300 space-y-2 overflow-x-auto">
+<p><span class="text-purple-400">import</span> csv</p>
+<p><span class="text-purple-400">from</span> ai_prompts <span class="text-purple-400">import</span> evaluate_dataset</p>
+<p class="text-neutral-500"># Process dataset pipelines with Python dictionaries</p>
+<p><span class="text-blue-400">def</span> <span class="text-amber-300">process_applicant_stream</span>(filepath):</p>
+<p class="pl-4">records = []</p>
+<p class="pl-4"><span class="text-blue-400">with</span> open(filepath, mode=<span class="text-emerald-300">'r'</span>, encoding=<span class="text-emerald-300">'utf-8'</span>) <span class="text-blue-400">as</span> stream:</p>
+<p class="pl-8">reader = csv.DictReader(stream)</p>
+<p class="pl-8"><span class="text-blue-400">for</span> entry <span class="text-blue-400">in</span> reader:</p>
+<p class="pl-12">records.append({<span class="text-emerald-300">"id"</span>: entry[<span class="text-emerald-300">"candidate"</span>], <span class="text-emerald-300">"status"</span>: <span class="text-emerald-300">"VERIFIED"</span>})</p>
+<p class="pl-4"><span class="text-blue-400">return</span> evaluate_dataset(records)</p>
+</div>
+<!-- Status footer tags -->
+<div class="pt-4 border-t border-white/10 flex flex-wrap gap-2 text-[11px] font-mono">
+<span class="px-2.5 py-1 rounded bg-white/[0.04] text-neutral-300 border border-white/[0.08]">Python 3.11</span>
+<span class="px-2.5 py-1 rounded bg-white/[0.04] text-neutral-300 border border-white/[0.08]">CSV Automation</span>
+<span class="px-2.5 py-1 rounded bg-white/[0.04] text-neutral-300 border border-white/[0.08]">Generative AI Prompting</span>
+<span class="px-2.5 py-1 rounded bg-blue-900/40 text-blue-300 border border-blue-700/40">26-Hour Certification</span>
+</div>
+</div>
+</div>
+<!-- Editorial Text -->
+<div class="lg:col-span-5 order-1 lg:order-2 space-y-4">
+<div class="font-serif text-5xl sm:text-6xl text-white/30 font-normal">01.</div>
+<h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Python &amp; Generative AI Development
+            </h3>
+<p class="text-sm text-neutral-400 leading-relaxed">
+              Building structured, clean Python programs using Lists, Dictionaries, and CSV data pipelines alongside modern Generative AI prompting workflows completed during the intensive 26-hour Samsung Innovation Campus Batch 8 (Code Kickstart Stage).
+            </p>
+<div class="pt-2 flex items-center gap-3 text-xs font-mono text-blue-400">
+<span>ALGORITHMIC LOGIC</span>
+<span>•</span>
+<span>DATA NORMALIZATION</span>
+</div>
+</div>
+</article>
+<!-- ROW 02: Large-Scale Event & Stage Direction (Left: Text, Right: Card) -->
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center" data-purpose="project-row-02">
+<!-- Editorial Text -->
+<div class="lg:col-span-5 space-y-4">
+<div class="font-serif text-5xl sm:text-6xl text-white/30 font-normal">02.</div>
+<h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Large-Scale Event &amp; Stage Direction
+            </h3>
+<p class="text-sm text-neutral-400 leading-relaxed">
+              Serving as Secretary &amp; Event Division lead for Pentas Seni Akbar (over 2,000 attendees across 5+ operational divisions) and Chief Event Organizer for the 2-day PERJUSA annual camp directing 150 campers and 20+ committee members.
+            </p>
+<div class="pt-2 flex items-center gap-3 text-xs font-mono text-amber-300">
+<span>CROWD GOVERNANCE</span>
+<span>•</span>
+<span>STAGE PROTOCOL</span>
+</div>
+</div>
+<!-- Media Showcase Card -->
+<div class="lg:col-span-7">
+<div class="glass-hairline rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-neutral-900/90 to-obsidian border border-white/10 hover:border-amber-500/40 transition-all duration-300">
+<div class="flex items-center justify-between pb-4 border-b border-white/10">
+<span class="text-xs font-mono uppercase tracking-wider text-neutral-400">Architecture • Stage Run-down</span>
+<span class="text-xs font-mono text-amber-400">Pentas Seni Akbar</span>
+</div>
+<!-- Visual Stage Flow Grid Mockup -->
+<div class="grid grid-cols-3 gap-3 py-6 text-center">
+<div class="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+<div class="text-2xl font-bold text-white">2,000+</div>
+<div class="text-[11px] text-neutral-400 font-mono mt-1">Live Audience</div>
+</div>
+<div class="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+<div class="text-2xl font-bold text-amber-300">5+</div>
+<div class="text-[11px] text-neutral-400 font-mono mt-1">Divisions Led</div>
+</div>
+<div class="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+<div class="text-2xl font-bold text-emerald-400">100%</div>
+<div class="text-[11px] text-neutral-400 font-mono mt-1">Time Schedule Accuracy</div>
+</div>
+</div>
+<!-- Quote badge -->
+<div class="p-4 rounded-lg bg-white/[0.02] border border-white/[0.08] text-xs text-neutral-300 flex items-start gap-3">
+<span class="text-amber-400 font-serif text-lg leading-none">“</span>
+<span>Led official permits, run-down minutes, multi-division walkie coordination, and VIP protocol without a single contingency breakdown.</span>
+</div>
+</div>
+</div>
+</article>
+<!-- ROW 03: Front-End Web & Visual Design (Left: Card, Right: Text) -->
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center" data-purpose="project-row-03">
+<!-- Media Showcase Card -->
+<div class="lg:col-span-7 order-2 lg:order-1">
+<div class="glass-hairline rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-neutral-900/90 to-obsidian border border-white/10 hover:border-emerald-500/40 transition-all duration-300">
+<div class="flex items-center justify-between pb-4 border-b border-white/10">
+<span class="text-xs font-mono uppercase tracking-wider text-neutral-400">UI / Perspective Grid</span>
+<span class="text-xs font-mono text-emerald-400">Champion PARADISE IX &amp; X</span>
+</div>
+<!-- Perspective Art / Design Visual Showcase -->
+<div class="py-6 space-y-3">
+<div class="flex items-center justify-between text-xs text-neutral-300">
+<span>Perspektif Gedung 3D Drafting</span>
+<span class="text-emerald-400 font-mono">Juara 1 (1st Place)</span>
+</div>
+<div class="w-full bg-white/[0.05] h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-full w-[96%]"></div>
+</div>
+<div class="flex items-center justify-between text-xs text-neutral-300 pt-2">
+<span>Mading, Face Art &amp; Painting Composition</span>
+<span class="text-emerald-400 font-mono">Juara 1 (1st Place)</span>
+</div>
+<div class="w-full bg-white/[0.05] h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-full w-[94%]"></div>
+</div>
+<div class="flex items-center justify-between text-xs text-neutral-300 pt-2">
+<span>Hasta Karya Putri Architecture (PERAK)</span>
+<span class="text-amber-300 font-mono">Juara 3 (3rd Place)</span>
+</div>
+<div class="w-full bg-white/[0.05] h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-amber-400 to-yellow-300 h-full w-[85%]"></div>
+</div>
+</div>
+<div class="pt-4 border-t border-white/10 flex flex-wrap gap-2 text-[11px] font-mono">
+<span class="px-2.5 py-1 rounded bg-white/[0.04] text-neutral-300 border border-white/[0.08]">HTML5 Semantic</span>
+<span class="px-2.5 py-1 rounded bg-white/[0.04] text-neutral-300 border border-white/[0.08]">Tailwind CSS</span>
+<span class="px-2.5 py-1 rounded bg-white/[0.04] text-neutral-300 border border-white/[0.08]">Perspective Drafting</span>
+</div>
+</div>
+</div>
+<!-- Editorial Text -->
+<div class="lg:col-span-5 order-1 lg:order-2 space-y-4">
+<div class="font-serif text-5xl sm:text-6xl text-white/30 font-normal">03.</div>
+<h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Front-End Web &amp; Visual Design
+            </h3>
+<p class="text-sm text-neutral-400 leading-relaxed">
+              Crafting responsive web interfaces as an Informatics Engineering undergraduate at Institut Teknologi PLN, backed by 4x 1st-place trophies in architectural perspective drawing, painting, and creative composition (PARADISE IX &amp; X).
+            </p>
+<div class="pt-2 flex items-center gap-3 text-xs font-mono text-emerald-400">
+<span>SPATIAL AESTHETICS</span>
+<span>•</span>
+<span>DESIGN FIDELITY</span>
+</div>
+</div>
+</article>
+<!-- ROW 04: Organizational Administration & Mediation (Left: Text, Right: Card) -->
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center" data-purpose="project-row-04">
+<!-- Editorial Text -->
+<div class="lg:col-span-5 space-y-4">
+<div class="font-serif text-5xl sm:text-6xl text-white/30 font-normal">04.</div>
+<h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Organizational Administration &amp; Mediation
+            </h3>
+<p class="text-sm text-neutral-400 leading-relaxed">
+              Full-cycle secretarial governance, official proposal drafting, and empathetic interpersonal conflict mediation as General Secretary of IKSAN (2024–2025) and OSPTQ Al-Azka (2020–2023), paired with certified pedagogical teaching experience.
+            </p>
+<div class="pt-2 flex items-center gap-3 text-xs font-mono text-purple-300">
+<span>DIPLOMATIC RESOLUTION</span>
+<span>•</span>
+<span>GOVERNANCE ARCHIVE</span>
+</div>
+</div>
+<!-- Media Showcase Card -->
+<div class="lg:col-span-7">
+<div class="glass-hairline rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-neutral-900/90 to-obsidian border border-white/10 hover:border-purple-500/40 transition-all duration-300">
+<div class="flex items-center justify-between pb-4 border-b border-white/10">
+<span class="text-xs font-mono uppercase tracking-wider text-neutral-400">Credential Matrix</span>
+<span class="text-xs font-mono text-purple-300">Secretariat • IKSAN</span>
+</div>
+<!-- Key Administrative milestones -->
+<div class="py-6 space-y-3 font-mono text-xs">
+<div class="p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+<span class="text-white">Praktik Amaliah Tadris (Teaching Practicum)</span>
+<span class="text-purple-300 font-bold">Grade 86 (Predikat A-)</span>
+</div>
+<div class="p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+<span class="text-white">Tahfizhul Qur'an Certification</span>
+<span class="text-emerald-400 font-bold">Juz 29 &amp; Juz 30</span>
+</div>
+<div class="p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+<span class="text-white">LDK Kepemimpinan Jenjang SMA</span>
+<span class="text-blue-300 font-bold">Predikat Baik</span>
+</div>
+</div>
+<p class="text-xs text-neutral-400 leading-relaxed italic border-l-2 border-purple-500 pl-3">
+                “Bridging student body grievances, managing confidential registry books, and standardizing institutional proposal documentation.”
+              </p>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- END: FeaturedProjectsSection -->
+<!-- BEGIN: EducationAndHonorsSection -->
+<!-- Section 4: Clean hairline grid table for Academic & Certification Index -->
+<section class="py-24 px-6 z-20 border-t border-white/[0.06] relative" id="credentials">
+<div class="max-w-7xl mx-auto">
+<div class="text-left mb-16">
+<span class="text-xs font-mono tracking-widest text-blue-400 uppercase">• INDEX &amp; CREDENTIALS</span>
+<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2">Education, Certifications &amp; Honors</h2>
+</div>
+<!-- 2-Column Hairline Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+<!-- LEFT COLUMN: Education & Certifications -->
+<div class="space-y-6">
+<h3 class="text-xs font-mono uppercase tracking-widest text-neutral-400 pb-3 border-b border-white/[0.12] flex items-center justify-between">
+<span>// Education &amp; Certifications</span>
+<span class="text-neutral-500">01 — 05</span>
+</h3>
+<div class="divide-y divide-white/[0.08]">
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">S1 Teknik Informatika</span>
+<span class="text-xs font-mono text-blue-400 bg-blue-950/60 px-2 py-0.5 rounded">2026 – Present</span>
+</div>
+<p class="text-xs text-neutral-400">Institut Teknologi PLN (Jakarta)</p>
+<p class="text-xs text-neutral-500">Undergraduate student focusing on web engineering, algorithms &amp; UI logic.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">Samsung Innovation Campus (SIC)</span>
+<span class="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded">2026</span>
+</div>
+<p class="text-xs text-neutral-400">Batch 8 — Stage 1: Code Kickstart Python Programming</p>
+<p class="text-xs text-neutral-500">26 Hours of intensive Python algorithms, CSV data pipelines &amp; Generative AI prompting.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">SMA Islam An-Nuqthah</span>
+<span class="text-xs font-mono text-neutral-400">2026</span>
+</div>
+<p class="text-xs text-neutral-400">Jurusan Matematika &amp; Ilmu Pengetahuan Alam (MIPA)</p>
+<p class="text-xs text-neutral-500">Strong foundation in exact calculus, analytical logic &amp; science.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">SMP Tahfizhul Qur'an Al-Azka</span>
+<span class="text-xs font-mono text-neutral-400">2023</span>
+</div>
+<p class="text-xs text-neutral-400">Tahfizh &amp; Boarding School Foundation</p>
+<p class="text-xs text-neutral-500">Disciplined memory retention, linguistic studies &amp; leadership basics.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">Sertifikasi Amaliah Tadris &amp; LDK</span>
+<span class="text-xs font-mono text-purple-400">Certified</span>
+</div>
+<p class="text-xs text-neutral-400">Nilai 86 (Predikat A-) &amp; LDK Jenjang SMA (Predikat Baik)</p>
+<p class="text-xs text-neutral-500">Evaluated on classroom instruction mastery, curriculum drafting &amp; student engagement.</p>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Awards & Honors -->
+<div class="space-y-6">
+<h3 class="text-xs font-mono uppercase tracking-widest text-neutral-400 pb-3 border-b border-white/[0.12] flex items-center justify-between">
+<span>// Awards &amp; Honors</span>
+<span class="text-neutral-500">01 — 05</span>
+</h3>
+<div class="divide-y divide-white/[0.08]">
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">Juara I Perspektif Gedung (Penegak)</span>
+<span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded font-bold">1st Place Trophy</span>
+</div>
+<p class="text-xs text-neutral-400">PARADISE IX</p>
+<p class="text-xs text-neutral-500">Technical architectural drawing with accurate focal points and geometric lighting.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">Juara I Mading, Face Art &amp; Melukis</span>
+<span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded font-bold">1st Place Trophy</span>
+</div>
+<p class="text-xs text-neutral-400">PARADISE X (Tingkat Penegak)</p>
+<p class="text-xs text-neutral-500">Triple-category champion in editorial wall magazine curation and artistic painting.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">Juara III Hasta Karya Putri Tingkat SMA</span>
+<span class="text-xs font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded">3rd Place</span>
+</div>
+<p class="text-xs text-neutral-400">PERAK 2024</p>
+<p class="text-xs text-neutral-500">Regional craft and structural artifact competition for high-school level.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">Tahfizh Qur'an Juz 29 &amp; 30 + Surat Pilihan</span>
+<span class="text-xs font-mono text-cyan-400">Completed</span>
+</div>
+<p class="text-xs text-neutral-400">Wisuda Tahfizh Al-Azka</p>
+<p class="text-xs text-neutral-500">Rigorous verbal recitation, tajweed compliance &amp; complete memorization.</p>
+</div>
+<div class="py-4 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-white text-base">Delegasi LP-Garuda II &amp; LP A_GANGLION VI</span>
+<span class="text-xs font-mono text-neutral-400">Regional Delegate</span>
+</div>
+<p class="text-xs text-neutral-400">Kwarda Banten &amp; Putri Scout Contingent</p>
+<p class="text-xs text-neutral-500">Representative for provincial scout championship in field engineering and survival.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: EducationAndHonorsSection -->
+<!-- BEGIN: FooterAndDirectContactSection -->
+<!-- Section 5: Minimalist Obsidian Footer with Top Hairline Border and Action Pills -->
+<footer class="py-24 px-6 border-t border-white/[0.12] bg-[#050505] relative z-20" id="contact">
+<div class="max-w-7xl mx-auto space-y-16">
+<!-- Big Editorial Headline Callout -->
+<div class="space-y-6 max-w-4xl">
+<span class="text-xs font-mono tracking-widest text-blue-400 uppercase">• INITIATE COLLABORATION</span>
+<h2 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+          Let's build something <br>
+<span class="font-serif italic font-normal text-neutral-300">structured</span> &amp; <span class="font-serif italic font-normal text-blue-200">impactful.</span>
+</h2>
+<p class="text-neutral-400 text-sm sm:text-base max-w-xl">
+          Available for software engineering internships, front-end development, event stage management, and student organization partnerships.
+        </p>
+</div>
+<!-- Direct Action Pills -->
+<div class="flex flex-wrap items-center gap-4 pt-4">
+<!-- Email Pill -->
+<a class="flex items-center gap-3 px-6 py-3.5 rounded-full bg-white text-obsidian font-semibold text-xs sm:text-sm hover:bg-neutral-200 transition-all shadow-md group" href="mailto:ndyasyafaa15@gmail.com">
+<span>✉</span>
+<span>ndyasyafaa15@gmail.com</span>
+<span class="group-hover:translate-x-0.5 transition-transform">↗</span>
+</a>
+<!-- LinkedIn Pill -->
+<a class="flex items-center gap-3 px-6 py-3.5 rounded-full glass-hairline text-white hover:text-blue-300 hover:border-white/30 transition-all text-xs sm:text-sm group" href="https://www.linkedin.com/in/andhyni-a'syafa-a-lifia" rel="noopener noreferrer" target="_blank">
+<span class="font-bold text-blue-400">in</span>
+<span>LinkedIn: Andhyni A'syafa A-lifia</span>
+<span class="group-hover:translate-x-0.5 transition-transform">↗</span>
+</a>
+<!-- WhatsApp Pill -->
+<a class="flex items-center gap-3 px-6 py-3.5 rounded-full glass-hairline text-white hover:text-emerald-300 hover:border-white/30 transition-all text-xs sm:text-sm group" href="https://wa.me/6281285231446" rel="noopener noreferrer" target="_blank">
+<span class="text-emerald-400 font-bold">WA</span>
+<span>+62 812-8523-1446</span>
+<span class="group-hover:translate-x-0.5 transition-transform">↗</span>
+</a>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-12 border-t border-white/[0.08] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-neutral-500">
+<div>
+<span>Tangerang &amp; Jakarta, Indonesia</span>
+</div>
+<div class="flex items-center gap-6">
+<span>Informatics Engineering • IT PLN</span>
+<span>© 2026 Andhyni A'syafa A-lifia</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: FooterAndDirectContactSection -->
+<!-- BEGIN: Interactive Enhancements Script -->
+<script data-purpose="scroll-interactivity">
+    document.addEventListener('DOMContentLoaded', () => {
+      // Smooth scroll offset adjustment for fixed navbar
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const headerOffset = 80;
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Pause carousel track marquee on hover for easy inspection
+      const marqueeTrack = document.querySelector('.curved-marquee-track');
+      if (marqueeTrack) {
+        marqueeTrack.addEventListener('mouseenter', () => {
+          marqueeTrack.style.animationPlayState = 'paused';
+        });
+        marqueeTrack.addEventListener('mouseleave', () => {
+          marqueeTrack.style.animationPlayState = 'running';
+        });
+      }
+    });
+  </script>
+<!-- END: Interactive Enhancements Script -->
+
+
+
+
+
+
+
+
+</body></html>
